@@ -31,4 +31,7 @@ class Library:
             raise ValueError("Book not found in the library.")
         if self.books[isbn].is_available:
             raise ValueError("Book was not borrowed.")
-        self.books[isbn].is_available = True
+        self.books[isbn].is_available = True 
+
+    def view_available_books(self):
+        return [book for book in self.books.values() if book.is_available]

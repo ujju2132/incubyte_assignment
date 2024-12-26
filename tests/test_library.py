@@ -44,5 +44,13 @@ class TestLibraryManagementSystem(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.library.return_book("123")
 
+    def test_view_available_books(self):
+        self.library.add_book("123", "Book Title", "Author Name", 2023)
+        self.library.add_book("124", "Another Book", "Another Author", 2024)
+        self.library.borrow_book("124")
+        available_books = self.library.view_available_books()
+        self.assertEqual(len(available_books), 1)
+        self.assertEqual(available_books[0].isbn, "123")
+
 if __name__ == "__main__":
     unittest.main()
