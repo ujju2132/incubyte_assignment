@@ -18,3 +18,10 @@ class Library:
         if isbn in self.books:
             raise ValueError("Book with this ISBN already exists.")
         self.books[isbn] = Book(isbn, title, author, publication_year)
+    
+    def borrow_book(self, isbn):
+        if isbn not in self.books:
+            raise ValueError("Book not found in the library.")
+        if not self.books[isbn].is_available:
+            raise ValueError("Book is already borrowed.")
+        self.books[isbn].is_available = False
